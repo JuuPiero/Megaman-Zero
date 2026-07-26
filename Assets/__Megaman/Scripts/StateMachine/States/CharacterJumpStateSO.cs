@@ -1,7 +1,14 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CharacterJumpStateSO", menuName = "Scriptable Objects/CharacterJumpStateSO")]
-public class CharacterJumpStateSO : ScriptableObject
+namespace  Megaman
 {
     
+    [CreateAssetMenu(fileName = "CharacterJumpStateSO", menuName = "Scriptable Objects/States/CharacterJumpStateSO")]
+    public class CharacterJumpStateSO : StateConfigSO
+    {
+        public override bool IsMatchingCondition()
+        {
+            return _owner.RB.linearVelocity.y > 0.1f && !_owner.isGrounded;
+        }
+    }
 }

@@ -7,7 +7,7 @@ namespace Megaman
     {
         public override bool IsMatchingCondition()
         {
-            return _input.Direction == Vector2.zero;
+            return _input.Direction == Vector2.zero && _owner.isGrounded;
         }
     }
 }

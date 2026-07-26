@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4292b2c6095b0864bb1c97173da801e1, type: 3}
+  m_Name: FallState
+  m_EditorClassIdentifier: Assembly-CSharp::Megaman.CharacterFallStateSO
+  stateName: Fall
+  stateLayer: 0
+  animationClip: {fileID: 7400000, guid: bb18ba5d7a711834082fc69c859572a4, type: 2}
+  endAnimationClip: {fileID: 0}
+  crossFadeDuration: 0.25
+  priority: 0

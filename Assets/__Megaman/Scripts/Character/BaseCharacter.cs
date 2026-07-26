@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -7,20 +8,19 @@ namespace Megaman
     {
 
         public bool isFacingRight = true;
+        public LayerMask groundLayer;
         public bool isGrounded = false;
-
+        public Transform groundCheckPoint;
         [field: SerializeField] public Rigidbody RB { get; protected set; }
 
         [SerializeField] protected CharacterDataSO _data;
 
         public GameObject visual;
 
-        public CharacterStateMachine stateMachine;
+        public StateMachine stateMachine;
 
         public Animancer.AnimancerComponent animancer;
-
         protected InputManager _input;
-
 
 
 
@@ -36,28 +36,34 @@ namespace Megaman
             RB.linearVelocity = new Vector3(_data.speed * direction.x, RB.linearVelocity.y, 0);
         }
 
-
         public void Jump()
         {
             RB.linearVelocity = new Vector3(RB.linearVelocity.x, _data.jumpForce, 0);
+        }
+        protected virtual void FixedUpdate()
+        {
+            isGrounded = Physics.CheckSphere(
+                groundCheckPoint.position,
+                0.3f,
+                groundLayer
+            );
         }
 
 
         public void HandleFlip()
         {
-            if(_input.Direction.x > 0 && !isFacingRight)
+            if (_input.Direction.x > 0 && !isFacingRight)
             {
                 visual.transform.eulerAngles = new Vector3(0, 100f, 0);
                 isFacingRight = true;
-
             }
-            else if(_input.Direction.x < 0 && isFacingRight)
+            else if (_input.Direction.x < 0 && isFacingRight)
             {
                 visual.transform.eulerAngles = new Vector3(0, -100f, 0);
                 isFacingRight = false;
             }
         }
 
-        
+
     }
 }
