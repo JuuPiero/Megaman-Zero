@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Megaman
@@ -12,4 +13,35 @@ namespace Megaman
         bool IsMatchingCondition();
 
     }
+
+
+// public enum ConditionType
+// {
+//     HpLess,
+//     HpGreater,
+//     SpeedGreater,
+//     HasTarget,
+//     AnimationFinished,
+//     TimerElapsed
+// }
+
+// [Serializable]
+// public class Condition
+// {
+//     public ConditionType type;
+
+//     public float value;
+//     public string key;
+// }
+
+
+
+
+//     [Serializable]
+// public class Transition
+// {
+//     public StateType TargetState;
+//     public Condition Condition;
+// }
 }
+

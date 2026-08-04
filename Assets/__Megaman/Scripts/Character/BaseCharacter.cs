@@ -39,7 +39,10 @@ namespace Megaman
 
         public void Jump()
         {
-            RB.linearVelocity = new Vector3(RB.linearVelocity.x, _data.jumpForce, 0);
+            if(isGrounded)
+            {
+                RB.linearVelocity = new Vector3(RB.linearVelocity.x, _data.jumpForce, 0);
+            }
         }
         protected virtual void FixedUpdate()
         {
@@ -53,13 +56,23 @@ namespace Megaman
 
         public void HandleFlip()
         {
+            if (_input.Direction.sqrMagnitude <= 0.01f)
+            {
+                RB.angularVelocity = Vector3.zero;
+                return;
+            }
+
             if (_input.Direction.sqrMagnitude > 0.01f)
             {
                 // Input is on XY, while character movement and yaw use the XZ plane.
                 Vector3 moveDirection = new Vector3(_input.Direction.x, 0f, _input.Direction.y);
                 Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
                 // Xoay dần cho mượt
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+                Quaternion smoothRotation = Quaternion.Slerp(
+                    RB.rotation,
+                    targetRotation,
+                    Time.fixedDeltaTime * 10f);
+                RB.MoveRotation(smoothRotation);
             }
         }
 

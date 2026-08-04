@@ -19,6 +19,7 @@ namespace Megaman
             {
                 charater.Initialize(_input);
             });
+            Debug.Log("hello world 123");
         }
 
 
@@ -28,13 +29,41 @@ namespace Megaman
             {
                 currentCharacter?.Jump();
             }
-            currentCharacter.HandleFlip();
+
+            if(Input.GetKeyDown(KeyCode.Alpha0))
+            {
+                ChangeCharacter(0);
+            }
+            else if(Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                ChangeCharacter(1);
+            }
         }
 
         private void FixedUpdate()
         {
             currentCharacter?.Move(_input.Direction);
+            currentCharacter?.HandleFlip();
 
+        }
+
+
+        void ChangeCharacter(int index)
+        {
+            try
+            {
+                currentCharacter.gameObject.SetActive(false);
+                Vector3 pos = currentCharacter.transform.position;
+                currentCharacter = characters[index];
+                currentCharacter.transform.position = pos;
+                currentCharacter.gameObject.SetActive(true);
+            }
+            catch (System.Exception)
+            {
+                
+                return;
+            }
+           
         }
     }
 }
