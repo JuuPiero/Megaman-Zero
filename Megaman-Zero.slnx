@@ -1,7 +1,7 @@
 ﻿<Solution>
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Animancer.FSM.csproj" />
   <Project Path="Animancer.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Animancer.Examples.csproj" />
   <Project Path="ToonyColorsPro.Runtime.csproj" />
   <Project Path="ToonyColorsPro.Editor.csproj" />

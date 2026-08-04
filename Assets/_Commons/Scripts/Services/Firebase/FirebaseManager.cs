@@ -12,21 +12,21 @@ namespace Megaman
         public static FirebaseState State { get; private set; }
         public async void Initialize(params object[] parameters)
         {
-            State = FirebaseState.Initializing;
-            try
-            {
-                var status = await Firebase.FirebaseApp.CheckAndFixDependenciesAsync();
-                if (status == Firebase.DependencyStatus.Available)
-                {
-                    // await InitializeModules();
-                    State = FirebaseState.Ready;
-                    Debug.Log("Firebase Ready");
-                }
-            }
-            catch
-            {
-                State = FirebaseState.Failed;
-            }
+            // State = FirebaseState.Initializing;
+            // try
+            // {
+            //     var status = await Firebase.FirebaseApp.CheckAndFixDependenciesAsync();
+            //     if (status == Firebase.DependencyStatus.Available)
+            //     {
+            //         // await InitializeModules();
+            //         State = FirebaseState.Ready;
+            //         Debug.Log("Firebase Ready");
+            //     }
+            // }
+            // catch
+            // {
+            //     State = FirebaseState.Failed;
+            // }
         }
     }
 }

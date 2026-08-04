@@ -4,7 +4,7 @@ using UnityEngine.Windows;
 
 namespace Megaman
 {
-    public abstract class BaseCharacter : MonoBehaviour, ICharacter
+    public class BaseCharacter : MonoBehaviour, ICharacter
     {
 
         public bool isFacingRight = true;
@@ -27,13 +27,14 @@ namespace Megaman
         public void Initialize(InputManager input)
         {
             _input = input;
-            animancer = visual.GetComponent<Animancer.AnimancerComponent>();
-            stateMachine.Initialize(this, input);
+            // animancer = visual.GetComponent<Animancer.AnimancerComponent>();
+            // stateMachine?.Initialize(this, input);
         }
 
         public void Move(Vector2 direction)
         {
-            RB.linearVelocity = new Vector3(_data.speed * direction.x, RB.linearVelocity.y, 0);
+            // RB.linearVelocity = new Vector3(_data.speed * direction.x, RB.linearVelocity.y, 0);
+            RB.linearVelocity = new Vector3(_data.speed * direction.x, RB.linearVelocity.y, direction.y * _data.speed);
         }
 
         public void Jump()
@@ -52,15 +53,13 @@ namespace Megaman
 
         public void HandleFlip()
         {
-            if (_input.Direction.x > 0 && !isFacingRight)
+            if (_input.Direction.sqrMagnitude > 0.01f)
             {
-                visual.transform.eulerAngles = new Vector3(0, 100f, 0);
-                isFacingRight = true;
-            }
-            else if (_input.Direction.x < 0 && isFacingRight)
-            {
-                visual.transform.eulerAngles = new Vector3(0, -100f, 0);
-                isFacingRight = false;
+                // Input is on XY, while character movement and yaw use the XZ plane.
+                Vector3 moveDirection = new Vector3(_input.Direction.x, 0f, _input.Direction.y);
+                Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+                // Xoay dần cho mượt
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
             }
         }
 
