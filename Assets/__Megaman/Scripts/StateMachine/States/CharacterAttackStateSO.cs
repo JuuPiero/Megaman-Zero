@@ -11,12 +11,7 @@ namespace Megaman
             return _input.IsAttackPressed && _owner.isGrounded;
         }
 
-        public override void Enter()
-        {
-            canExit = false;
-            base.Enter();
-            _state.Speed = 2;
-        }
+      
         public override void AnimationFinish()
         {
             canExit = true;

@@ -15,15 +15,14 @@ namespace Megaman
     }
 
 
-// public enum ConditionType
-// {
-//     HpLess,
-//     HpGreater,
-//     SpeedGreater,
-//     HasTarget,
-//     AnimationFinished,
-//     TimerElapsed
-// }
+    public enum ConditionType
+    {
+        Less,
+        Greater,
+        Has,
+        AnimationFinished,
+        TimerElapsed
+    }
 
 // [Serializable]
 // public class Condition
